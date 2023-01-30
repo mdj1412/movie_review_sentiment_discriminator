@@ -1,0 +1,8 @@
+__pycache__
+venv
+*.pt
+*.icloud
+colab.ipynb
+*.json
+*.bin
+*.ftz
