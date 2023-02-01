@@ -156,7 +156,7 @@ def main(args):
         # Print Top 10 Accuracy
         show_top_ten(df)
         # learning_rate and batch_size_train 기준 Best Top Accuracy
-        show_specific_lr_bs(df, 5e-5, 128)
+        show_specific_lr_bs(df, 9e-5, 64)
 
 
 
