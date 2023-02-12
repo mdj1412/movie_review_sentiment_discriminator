@@ -113,7 +113,6 @@ def main(args):
     else :
         device = 'cpu'
 
-    device='cpu'
     print(device)
 
     # Draw Graph
