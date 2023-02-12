@@ -1,10 +1,8 @@
 import argparse
 import datetime
-import string
 
 from tqdm import tqdm
 from tqdm import trange
-from typing import List
 
 import pandas as pd
 import numpy as np

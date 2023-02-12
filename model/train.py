@@ -10,6 +10,7 @@ from tqdm import tqdm
 def train(args, model, train_inputs, train_labels, validation_inputs, validation_labels, 
             batch_size_train, batch_size_validation, 
             output_dir, 
+            save_boundary_accuracy, 
             learning_rate=1e-5,
             # XXX
             warmup_steps=50,
@@ -143,7 +144,7 @@ def train(args, model, train_inputs, train_labels, validation_inputs, validation
                                 % (global_step, acc))
 
                 # Do Not Save
-                if acc > 88.3:
+                if acc > save_boundary_accuracy:
                     # XXX
                     model_state_dict = {k:v.cpu() for (k, v) in model.state_dict().items()}
 

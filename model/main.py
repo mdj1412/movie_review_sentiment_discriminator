@@ -91,6 +91,8 @@ def show_top_ten(df):
 def show_specific_lr_bs(df, lr, bs):
     filt = (df['learning_rate'] == lr) & (df['batch_size_train'] == bs)
     df = df[filt]
+
+    # Accuracy 정렬 이후, 가장 높은 정확도 10개 추출, 마지막으로 내림차순 정렬
     idx = df['accuracy'].argsort()[-10:][::-1]
     best_10_accuracy = df.iloc[idx]
 
@@ -111,6 +113,7 @@ def main(args):
     else :
         device = 'cpu'
 
+    device='cpu'
     print(device)
 
     # Draw Graph
@@ -156,17 +159,17 @@ def main(args):
         # Print Top 10 Accuracy
         show_top_ten(df)
         # learning_rate and batch_size_train 기준 Best Top Accuracy
-        show_specific_lr_bs(df, 9e-5, 64)
+        show_specific_lr_bs(df, 7e-5, 64)
 
 
 
         plt.legend(loc='lower right', fontsize=10)
         plt.axis([0, step_size+100, 0, 100])
-        plt.title('Model Name : {}\n Best Accuracy : {:.2f}% ( lr = {} / bs = {} / step = {})'
+        plt.title('Model Name : {0}\n Best Accuracy : {1:.2f}% ( lr = {2} / bs = {3} / step = {4})'
             .format(args.model, best_accuracy['accuracy'], best_accuracy['learning_rate'], 
             int(best_accuracy['batch_size_train']), int(best_accuracy['step'])))
-        plt.xlabel('Step')
-        plt.ylabel('Accuracy')
+        plt.xlabel('Step')# Write X-axis
+        plt.ylabel('Accuracy')# Write Y-axis
         plt.show()
 
         exit()
@@ -309,6 +312,7 @@ def main(args):
             batch_size_train=args.batch_size_train, 
             batch_size_validation=args.batch_size_test,
             output_dir=output_dir,
+            save_boundary_accuracy=args.save_boundary_accuracy,
             learning_rate=args.learning_rate,
             warmup_steps=50,
             num_training_steps=args.num_training_steps,
@@ -429,6 +433,7 @@ if __name__ == '__main__':
     # 두 개 차이 중요
     parser.add_argument('--steps', '-s', type=str, default=None, help='Writing''steps accuracy when validation or testing')
     parser.add_argument('--num_training_steps', '-n', type=int, default=2000, help='how many steps when we training')
+    parser.add_argument('--save_boundary_accuracy', '-sba', type=float, default=93.0, help='save boundary accuracy in excel file when we training')
 
     parser.add_argument('--epochs', '-e', type=int, default=10, help='Number of epoch to train.')#ignore
 
@@ -444,6 +449,7 @@ if __name__ == '__main__':
     # 4. use arguments
     print("num_training_steps : ", args.num_training_steps)
     print("lr : ", args.learning_rate)
+    print("save_boundary_accuracy : ", args.save_boundary_accuracy)
     # print(args)
     # print('model :',args.model)
     # print('epochs :',args.epochs)

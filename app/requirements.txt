@@ -1,0 +1,7 @@
+gradio
+datasets
+transformers
+torch
+pandas
+numpy
+fasttext
