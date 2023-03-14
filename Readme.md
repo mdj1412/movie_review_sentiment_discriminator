@@ -1,4 +1,4 @@
-# Movie Review Score Discriminator
+# Movie Review Sentiment Analysis
 
 * 영화 리뷰 감정 분석 코드와 보고서 및 데모 입니다.
 

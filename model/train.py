@@ -241,9 +241,9 @@ def test(args, model, inputs, labels, batch_size, step, device="mps", version="t
 
     if version == "train":
         # Save Accuracy
-        if df.empty : #First Time
+        if df.empty: # First Time
             df.loc[0] = [args.model, args.learning_rate, args.batch_size_train, step, acc.item()]
-        else : 
+        else:
             # Filter 
             filt = (df['model_name'] == args.model) & \
                     (df['learning_rate'] == args.learning_rate) & \
